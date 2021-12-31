@@ -1,0 +1,18 @@
+public class DestroyRegion extends Command {
+	
+	public DestroyRegion() {
+		name = "destroy region";
+		description = "Destroy/Remove a region";
+
+		parameters = new Parameter[1];
+
+		parameters[0] = new Parameter();
+		parameters[0].name = "name";
+		parameters[0].description = "Name/Path of the region to be removed";
+		parameters[0].required = true;
+
+
+
+	}
+	
+}
