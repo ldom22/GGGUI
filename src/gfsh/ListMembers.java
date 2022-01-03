@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ListMembers.java                                                                           */
+/* Description: ListMembers command implementation                                                  */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 import javax.swing.table.*;
 
 public class ListMembers extends Command {

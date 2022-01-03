@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ShowMetrics.java                                                                           */
+/* Description: ShowMetrics command implementation                                                  */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 import javax.swing.table.*;
 
 public class ShowMetrics extends Command {

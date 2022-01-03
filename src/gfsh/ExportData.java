@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ExportData.java                                                                            */
+/* Description: ExportData command implementation                                                   */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class ExportData extends Command {
 	
 	public ExportData() {

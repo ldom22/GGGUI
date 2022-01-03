@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ImportData.java                                                                            */
+/* Description: ImportData command implementation                                                   */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class ImportData extends Command {
 	
 	public ImportData() {

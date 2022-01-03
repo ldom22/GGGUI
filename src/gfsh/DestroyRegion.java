@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: DestroyRegion.java                                                                         */
+/* Description: DestroyRegion command implementation                                                */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class DestroyRegion extends Command {
 	
 	public DestroyRegion() {

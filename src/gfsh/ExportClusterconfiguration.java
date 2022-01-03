@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ExportClusterconfiguration.java                                                            */
+/* Description: ExportClusterconfiguration command implementation                                   */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class ExportClusterconfiguration extends Command {
 	
 	public ExportClusterconfiguration() {

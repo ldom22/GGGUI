@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: LocateEntry.java                                                                           */
+/* Description: LocateEntry command implementation                                                  */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class LocateEntry extends Command {
 	
 	public LocateEntry() {

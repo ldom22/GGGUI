@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: StopGatewayReceiver.java                                                                   */
+/* Description: StopGatewayReceiver command implementation                                          */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class StopGatewayReceiver extends Command {
 	
 	public StopGatewayReceiver() {

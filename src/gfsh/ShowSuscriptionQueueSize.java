@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ShowSuscriptionQueueSize.java                                                              */
+/* Description: ShowSuscriptionQueueSize command implementation                                     */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class ShowSuscriptionQueueSize extends Command {
 	
 	public ShowSuscriptionQueueSize() {

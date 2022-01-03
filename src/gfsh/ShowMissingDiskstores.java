@@ -1,3 +1,14 @@
+/****************************************************************************************************/
+/*                                                                                                  */
+/* File: ShowMissingDiskstores.java                                                                 */
+/* Description: ShowMissingDiskstores command implementation                                        */
+/* Created: 2021-2022 in Mexico                                                                     */
+/* License type: Apache                                                                             */
+/*                                                                                                  */
+/* Author: Luis Olea                                                                                */
+/*                                                                                                  */
+/****************************************************************************************************/
+
 public class ShowMissingDiskstores extends Command {
 	
 	public ShowMissingDiskstores() {
