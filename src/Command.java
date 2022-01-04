@@ -150,14 +150,14 @@ public class Command extends JFrame implements ActionListener {
 					String userText = jtfs.get(i).getText();
 					i++;
 					if(userText.length()>0){
-						command += "--" + p.name + " " + userText + " ";
+						command += "--" + p.name + "='" + userText + "' ";
 					} else if(p.required==true){
 						JOptionPane.showMessageDialog(null, "Error: Required parameter \'"+p.name+"\' is empty");
 						return;
 					}
 				} else {
 					if(!jcbs.get(j).getSelectedItem().toString().equals("")){
-						command += "--" + p.name + " " + jcbs.get(j).getSelectedItem().toString() + " ";
+						command += "--" + p.name + "='" + jcbs.get(j).getSelectedItem().toString() + "' ";
 					}
 					j++;
 				}
