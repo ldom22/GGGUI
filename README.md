@@ -8,15 +8,19 @@ It also displays command results on tables for easing the viewing and selecting 
 ### Screenshots
 
 ![Screenshot](img/connections_window.jpg)
+
 Initial window for managing and saving connections to different grids.
 
 ![Screenshot](img/main_window.jpg)
+
 Main window with terminal for manual command entry and menus for accessing all available commands.
 
 ![Screenshot](img/command_window.jpg)
+
 Sample window for selecting parameters and running a command.
 
 ![Screenshot](img/result_window.jpg)
+
 Sample resulting window after running a command.
 
 ### Attributions
