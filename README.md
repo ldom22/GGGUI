@@ -23,6 +23,13 @@ Sample window for selecting parameters and running a command.
 
 Sample resulting window after running a command.
 
+### Getting started
+
+For using GGGUI you will need java version "16.0.2" or higher installed in your system.
+Run "java -version" on your local prompt to check if you have java installed, and check which version you have.
+Download the latest compiled jar file from /jar or get a release from the release section when available.
+Fill the connections window information, keep in mind that GGGUI first does SSH into a remote machine, then optionally executes commands, and finally runs GFSH remotely on the target machine, which will connect to the Locator server of your grid using the IP and Port provided by you.
+
 ### Attributions
 
 GGGUI is written on the Java programming language, it uses JSch as a Java Shell, and it is made for use with Gemfire or [Geode](https://github.com/apache/geode).
