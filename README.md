@@ -35,6 +35,6 @@ Fill the connections window information, keep in mind that GGGUI first does SSH 
 
 ### Attributions
 
-GGGUI is written on the Java programming language, it uses JSch as a Java Shell, and it is made for use with Gemfire or [Geode](https://github.com/apache/geode).
+GGGUI is written on the Java programming language, it uses [JSch](http://www.jcraft.com/jsch/) as a Java Shell, and it is made for use with Gemfire or [Geode](https://github.com/apache/geode).
 
 
