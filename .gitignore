@@ -2,3 +2,6 @@
 jar/connections.txt
 *.jar
 *.class
+class/connections.txt
+*.class
+*.jar

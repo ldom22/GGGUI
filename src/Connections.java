@@ -188,6 +188,13 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 			}
 			listOfSavedConnections.add(con);
 			saveConnectionList();
+		} else if(ae.getActionCommand().equals("Delete")){
+			listOfSavedConnections.remove(jl.getSelectedIndex());
+			dlm.remove(jl.getSelectedIndex());
+			saveConnectionList();
+			for(JTextField jtf: jtf_array){
+				jtf.setText("");
+			}
 		}
 	}
 	
