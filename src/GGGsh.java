@@ -81,7 +81,7 @@ public class GGGsh {
 	Session session = null;
 	ByteArrayOutputStream fos = null;
 
-	public GGGsh(String user, String host, String pswd, String port, String gfsh_path, String locatorIP, String locatorPort){
+	public GGGsh(String user, String host, String pswd, String port, String gfsh_path, String locatorIP, String locatorPort, String c1, String c2, String c3, String c4){
 		Loader l = new Loader("Connecting...");
 		JSch jsch=new JSch();
 		
@@ -116,10 +116,16 @@ public class GGGsh {
 		
 		ggg = new GGG(this);
 		
+		//custom commands after login
+		if(c1!=null && !c1.equals("") && !c1.equals(" ")){SendCommand(c1);}
+		if(c2!=null && !c2.equals("") && !c2.equals(" ")){SendCommand(c1);}
+		if(c3!=null && !c3.equals("") && !c3.equals(" ")){SendCommand(c1);}
+		if(c4!=null && !c4.equals("") && !c4.equals(" ")){SendCommand(c1);}
+		
+		//run GFSH
 		SendCommand("cd "+gfsh_path);
 		SendCommand("gfsh");
 		SendCommand("connect --locator="+locatorIP+"["+locatorPort+"]");
-		
 		
 		//get prefill command options for members
 		Command c = new Command();

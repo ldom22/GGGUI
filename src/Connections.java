@@ -46,7 +46,11 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 			for(String[] s: listOfSavedConnections){
 				String line = "";
 				for(String st: s){
-					line += st + "@@@@";
+					if(st.equals("")){
+						line += " " + "@@@@";
+					} else {
+						line += st + "@@@@";
+					}
 				}
 				bw.write(line+"\n");
 			}
@@ -59,7 +63,7 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 	public void setSavedFields(String input){
 		for(String[] s: listOfSavedConnections){
 			if(s[0].equals(input)){
-				for(int i=0; i<12; i++){
+				for(int i=0; i<jtf_array.length; i++){
 					jtf_array[i].setText(s[i]);
 				}
 				return;
@@ -178,7 +182,7 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 	
 	public void actionPerformed(java.awt.event.ActionEvent ae){
 		if(ae.getActionCommand().equals("Connect")){
-			new GGGsh(jtf_array[1].getText(), jtf_array[2].getText(), jtf_array[3].getText(), jtf_array[4].getText(), jtf_array[5].getText(), jtf_array[6].getText(), jtf_array[7].getText());
+			new GGGsh(jtf_array[1].getText(), jtf_array[2].getText(), jtf_array[3].getText(), jtf_array[4].getText(), jtf_array[5].getText(), jtf_array[6].getText(), jtf_array[7].getText(), jtf_array[8].getText(), jtf_array[9].getText(), jtf_array[10].getText(), jtf_array[11].getText());
 		} else if(ae.getActionCommand().equals("Save")){
 			dlm.addElement(jtf_array[0].getText());
 			jl.setModel(dlm);
