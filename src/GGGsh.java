@@ -61,7 +61,7 @@ public class GGGsh {
 		try {
 			bw.write(command + "\n");
 			bw.flush();
-			while(result==null || result==""){
+			while(result==null || result.equals("")){
 				Thread.sleep(1000);
 				result = fos.toString();
 			}
@@ -126,6 +126,8 @@ public class GGGsh {
 		SendCommand("cd "+gfsh_path);
 		SendCommand("gfsh");
 		SendCommand("connect --locator="+locatorIP+"["+locatorPort+"]");
+		
+		//add check for gfsh
 		
 		//get prefill command options for members
 		Command c = new Command();
