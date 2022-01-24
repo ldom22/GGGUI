@@ -38,15 +38,15 @@ public class GGG extends JFrame implements ActionListener {
 		//Generate tool bar menus
 		String[][] menu = {
 			{"Clients", "close durable-client", "describe client", "list clients", "close durable-cq", "list durable-cqs"},
-			{"Config", "describe config", "export config", "status cluster-config-service", "export cluster-configuration", "import cluster-configuration"},
+			{"Config", "describe config", "export config", "status Cluster-Config-Service", "export cluster-configuration", "import cluster-configuration"},
 			{"Data", "export data", "import data", "put", "query", "remove", "locate entry", "get"},
-			{"Disk stores", "alter disk-store", "backup disk-store", "compact disk-store", "compact offline-disk-store", "create disk-store", "describe disk-store", "describe offline-disk-store", "destroy disk-store", "export offline-disk-store", "list disk-stores", "revoke missing-disk-store", "show missing-disk-stores", "upgrade offline-disk-store", "validate offline-disk-store"},
+			{"Disk stores", "alter disk-store", "backup disk-store", "compact disk-store", "compact offline-disk-store", "create disk-store", "describe disk-store", "describe offline-disk-store", "destroy disk-store", "export Offline-Disk-store", "list disk-stores", "revoke Missing-Disk-store", "show Missing-Disk-stores", "upgrade Offline-Disk-store", "validate Offline-Disk-store"},
 			{"Functions", "destroy function", "execute function", "list functions"},
-			{"Gateways", "create gateway-receiver", "create gateway-sender", "list gateways", "load-balance gateway-sender", "pause gateway-sender", "resume gateway-sender", "start gateway-receiver", "start gateway-sender", "status gateway-receiver", "status gateway-sender", "stop gateway-receiver", "stop gateway-sender"},
+			{"Gateways", "create gateway-receiver", "create gateway-sender", "list gateways", "load-balance gateway-sender", "pause gateway-sender", "resume Gateway-Sender", "start Gateway-Receiver", "start Gateway-Sender", "status Gateway-Receiver", "status Gateway-Sender", "stop Gateway-Receiver", "stop Gateway-Sender"},
 			{"Indexes", "clear defined indexes", "create defined indexes", "destroy index", "create index", "define index", "list indexes"},
 			{"Log & Debug", "change loglevel", "export logs", "show log", "debug", "export stack-traces", "echo", "set variable"},
 			{"Maintenance", "alter runtime", "deploy", "undeploy", "list deployed", "gc", "encrypt password", "netstat", "show dead-locks", "show metrics", "shutdown", "configure pdx", "pdx rename", "rebalance"},
-			{"Queues", "create async-event-queue", "show subscription-queue-size", "list async-event-queues"},
+			{"Queues", "create async-event-queue", "show Subscription-Queue-Size", "list async-event-queues"},
 			{"Regions", "alter region", "create region", "describe region", "destroy region", "list regions"},
 			{"Servers", "start locator", "start server", "status locator", "status server", "stop locator", "stop server", "describe member", "list members"},
 			{"Other", "run", "sh", "sleep", "start jconsole", "start jvisualvm", "start pulse", "start vsd", "connect", "disconnect", "describe connection", "exit", "help", "hint", "history", "version"},
@@ -60,7 +60,7 @@ public class GGG extends JFrame implements ActionListener {
 			for(int j=0; j<menu[i].length-1; j++){
 				jmi[j] = new JMenuItem(menu[i][j+1]);
 				jmi[j].addActionListener(this);
-				String searchTip = menu[i][j+1];
+				String searchTip = menu[i][j+1].toLowerCase();
 				for(String[] s: ToolTips.text){
 					if(s[0].equals(searchTip)){
 						jmi[j].setToolTipText(s[1]);
