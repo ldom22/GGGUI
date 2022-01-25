@@ -46,7 +46,7 @@ public class GGG extends JFrame implements ActionListener {
 			{"Indexes", "clear defined indexes", "create defined indexes", "destroy index", "create index", "define index", "list indexes"},
 			{"Log & Debug", "change loglevel", "export logs", "show log", "debug", "export stack-traces", "echo", "set variable"},
 			{"Maintenance", "alter runtime", "deploy", "undeploy", "list deployed", "gc", "encrypt password", "netstat", "show dead-locks", "show metrics", "shutdown", "configure pdx", "pdx rename", "rebalance"},
-			{"Queues", "create async-event-queue", "show Subscription-Queue-Size", "list async-event-queues"},
+			{"Queues", "create async-event-queue", "show Suscription-Queue-Size", "list async-event-queues"},
 			{"Regions", "alter region", "create region", "describe region", "destroy region", "list regions"},
 			{"Servers", "start locator", "start server", "status locator", "status server", "stop locator", "stop server", "describe member", "list members"},
 			{"Other", "run", "sh", "sleep", "start jconsole", "start jvisualvm", "start pulse", "start vsd", "connect", "disconnect", "describe connection", "exit", "help", "hint", "history", "version"},

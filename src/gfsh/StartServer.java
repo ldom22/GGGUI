@@ -240,6 +240,7 @@ public class StartServer extends Command {
 		parameters[31].name = "use-cluster-configuration";
 		parameters[31].description = "When set to true, the server requests the configuration from locator's cluster configuration service";
 		parameters[31].required = false;
+		parameters[31].options = new String[2];
 		parameters[31].options[0] = "true";
 		parameters[31].options[1] = "false";
 
