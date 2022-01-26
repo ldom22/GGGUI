@@ -13,7 +13,7 @@ public class StatusGatewayReceiver extends Command {
 	
 	public StatusGatewayReceiver() {
 		name = "status gateway-receiver ";
-		description = "";
+		description = "Display the status of a Gateway Sender";
 
 		parameters = new Parameter[2];
 

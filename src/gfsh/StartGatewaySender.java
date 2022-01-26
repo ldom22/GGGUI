@@ -13,7 +13,7 @@ public class StartGatewaySender extends Command {
 	
 	public StartGatewaySender() {
 		name = "start gateway-sender";
-		description = "";
+		description = "Start the Gateway Sender on a member or members";
 
 		parameters = new Parameter[3];
 

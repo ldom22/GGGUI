@@ -25,7 +25,7 @@ public class DescribeConfig extends Command {
 
 		parameters[1] = new Parameter();
 		parameters[1].name = "hide-defaults";
-		parameters[1].description = "";
+		parameters[1].description = "Whether to hide configuration information for properties with the default value";
 		parameters[1].required = false;
 		parameters[1].options = new String[2];
 		parameters[1].options[0] = "false";

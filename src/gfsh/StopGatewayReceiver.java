@@ -13,7 +13,7 @@ public class StopGatewayReceiver extends Command {
 	
 	public StopGatewayReceiver() {
 		name = "stop gateway-receiver ";
-		description = "";
+		description = "Stop the Gateway Receiver on a member or members";
 
 		parameters = new Parameter[2];
 

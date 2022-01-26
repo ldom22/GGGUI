@@ -79,7 +79,7 @@ public class CreateRegion extends Command {
 
 		parameters[9] = new Parameter();
 		parameters[9].name = "entry-idle-time-expiration-action";
-		parameters[9].description = "";
+		parameters[9].description = "Action to be taken on an entry that has exceeded the idle expiration";
 		parameters[9].required = false;
 
 
@@ -136,7 +136,7 @@ public class CreateRegion extends Command {
 
 		parameters[18] = new Parameter();
 		parameters[18].name = "enable-async-conflation";
-		parameters[18].description = "";
+		parameters[18].description = "Whether to allow aggregation of asynchronous TCP/IP messages sent by the producer member of the region";
 		parameters[18].required = false;
 
 

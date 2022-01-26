@@ -13,7 +13,7 @@ public class UpgradeOfflineDiskstore extends Command {
 	
 	public UpgradeOfflineDiskstore() {
 		name = "upgrade offline-disk-store";
-		description = "";
+		description = "Upgrade an offline disk store";
 
 		parameters = new Parameter[4];
 
@@ -39,8 +39,6 @@ public class UpgradeOfflineDiskstore extends Command {
 		parameters[3].name = "J";
 		parameters[3].description = "Arguments passed to the Java Virtual Machine performing the upgrade operation on the disk store";
 		parameters[3].required = false;
-
-
 
 	}
 	
