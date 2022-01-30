@@ -86,6 +86,20 @@ public class Command extends JFrame implements ActionListener {
 							p.options[i] = Gsh.prefill_region[i];
 						}
 					}
+				} else if(name.contains("function")){
+					if(p.name.equals("id")){
+						p.options = new String[Gsh.prefill_function.length];
+						for(int i=0; i< Gsh.prefill_function.length; i++){
+							p.options[i] = Gsh.prefill_function[i];
+						}
+					}
+				} else if(name.contains("disk-store")){
+					if(p.name.equals("name")){
+						p.options = new String[Gsh.prefill_diskstore.length];
+						for(int i=0; i< Gsh.prefill_diskstore.length; i++){
+							p.options[i] = Gsh.prefill_diskstore[i];
+						}
+					}
 				}
 				
 				if(p.options==null){
