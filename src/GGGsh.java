@@ -19,7 +19,7 @@ public class GGGsh {
 	boolean connected = false;
 	GGG ggg;
 	
-	String[] prefill_member, prefill_region, prefill_diskstore, prefill_function;
+	String[] prefill_member, prefill_region, prefill_diskstore, prefill_function, prefill_index;
 	
 	public void close(){
 		try {
@@ -182,6 +182,20 @@ public class GGGsh {
 		prefill_function = new String[dtm.getRowCount()];
 		for(int i=0; i<dtm.getRowCount(); i++){
 			prefill_function[i] = (String)dtm.getValueAt(i,1);
+		}
+		
+		//list indexes
+		c = new Command();
+		dtm = new DefaultTableModel();
+		dtm = c.getTableData(SendCommandAndWaitForGFSH("list indexes"));
+		while(dtm.getRowCount()==0){
+			try {Thread.sleep(100);} catch (Exception e){e.printStackTrace();}
+			dtm = c.getTableData(fos.toString());
+		}
+		fos.reset();
+		prefill_index = new String[dtm.getRowCount()];
+		for(int i=0; i<dtm.getRowCount(); i++){
+			prefill_index[i] = (String)dtm.getValueAt(i,3);
 		}
 		
 		l.end();

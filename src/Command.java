@@ -100,6 +100,13 @@ public class Command extends JFrame implements ActionListener {
 							p.options[i] = Gsh.prefill_diskstore[i];
 						}
 					}
+				} else if(name.equals("destroy index ")){
+					if(p.name.equals("name")){
+						p.options = new String[Gsh.prefill_index.length];
+						for(int i=0; i< Gsh.prefill_index.length; i++){
+							p.options[i] = Gsh.prefill_index[i];
+						}
+					}
 				}
 				
 				if(p.options==null){
