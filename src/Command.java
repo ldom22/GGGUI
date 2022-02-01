@@ -80,13 +80,6 @@ public class Command extends JFrame implements ActionListener {
 							p.options[i] = Gsh.prefill_member[i];
 						}
 					}
-				} else if(name.contains("region")){
-					if(p.name.equals("name")){
-						p.options = new String[Gsh.prefill_region.length];
-						for(int i=0; i< Gsh.prefill_region.length; i++){
-							p.options[i] = Gsh.prefill_region[i];
-						}
-					}
 				} else if(name.contains("function")){
 					if(p.name.equals("id")){
 						p.options = new String[Gsh.prefill_function.length];
@@ -106,6 +99,18 @@ public class Command extends JFrame implements ActionListener {
 						p.options = new String[Gsh.prefill_index.length];
 						for(int i=0; i< Gsh.prefill_index.length; i++){
 							p.options[i] = Gsh.prefill_index[i];
+						}
+					}
+				} else if(p.name.equals("include-region") || p.name.equals("exclude-region") || p.name.equals("template-region")){
+					p.options = new String[Gsh.prefill_region.length];
+					for(int i=0; i< Gsh.prefill_region.length; i++){
+						p.options[i] = Gsh.prefill_region[i];
+					}
+				} else if(name.contains("region") && !name.equals("create region")){
+					if(p.name.equals("name")){
+						p.options = new String[Gsh.prefill_region.length];
+						for(int i=0; i< Gsh.prefill_region.length; i++){
+							p.options[i] = Gsh.prefill_region[i];
 						}
 					}
 				}
@@ -164,7 +169,7 @@ public class Command extends JFrame implements ActionListener {
 			if(result.split("\n").length<=4){
 				JOptionPane.showMessageDialog(null, result);
 			} else {
-				new TableResultWindow(name, getTableData(result));
+				new TableResultWindow(Gsh.nameOfConnection.split(" ")[0] + " " + name, getTableData(result));
 			}
 		}
 	}
@@ -197,7 +202,7 @@ public class Command extends JFrame implements ActionListener {
 		if(result.split("\n").length<=4){
 			JOptionPane.showMessageDialog(null, result);
 		} else {
-			new TableResultWindow(fullcommand, getTableData(result));
+			new TableResultWindow(Gsh.nameOfConnection.split(" ")[0] + " " + fullcommand, getTableData(result));
 		}
 		dispose();
 	}

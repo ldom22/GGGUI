@@ -9,6 +9,7 @@
 /*                                                                                                  */
 /****************************************************************************************************/
 
+import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -77,6 +78,17 @@ public class GGG extends JFrame implements ActionListener {
 		JComponent panel = new JPanel(false);
 		panel.setLayout(new GridLayout(1,1));
 			jtp = new JTextPane();
+				JPopupMenu popup = new JPopupMenu();
+				JMenuItem ct1 = new JMenuItem("Save to file");
+				JMenuItem ct2 = new JMenuItem("Clear terminal");
+				JMenuItem ct3 = new JMenuItem("About...");
+				ct1.addActionListener(this);
+				ct2.addActionListener(this);
+				ct3.addActionListener(this);
+				popup.add(ct1);
+				popup.add(ct2);
+				popup.add(ct3);
+			jtp.setComponentPopupMenu(popup);
 			jtp.setBackground(Color.BLACK);
 			jtp.setForeground(Color.WHITE);
 			jtp.setEditable(false);
@@ -107,6 +119,23 @@ public class GGG extends JFrame implements ActionListener {
 			return;
 		} else if(ae.getActionCommand().equals("About...")){
 			JOptionPane.showMessageDialog(null, "GGGUI was created by Luis Olea in Mexico.\n\nCheck https://github.com/ldom22/GGGUI for updates.\n\nFor issues and feature requests please use the Github issue tracker.");
+		} else if(ae.getActionCommand().equals("Clear terminal")){
+			jtp.setText("");
+		} else if(ae.getActionCommand().equals("Save to file")){
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.showSaveDialog(this);
+			File f = fileChooser.getSelectedFile();
+			if(f!=null){
+				try {
+					BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+					bw.write(jtp.getText());
+					bw.flush();
+					bw.close();
+				} catch(IOException e){
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "An error occurred while writing the file");
+				}
+			}
 		} else {
 			String con = ae.getActionCommand().replace("-","");
 			String cl = "";
