@@ -20,6 +20,7 @@ public class GGGsh {
 	GGG ggg;
 	
 	String[] prefill_member, prefill_region, prefill_diskstore, prefill_function, prefill_index;
+	String nameOfConnection;
 	
 	public void close(){
 		try {
@@ -56,6 +57,23 @@ public class GGGsh {
 		return result;
 	}
 	
+	public String SendCommandAndWaitForGFSH_noLog(String command){
+		String result = "";
+		try {
+			bw.write(command + "\n");
+			bw.flush();
+			while(result.lastIndexOf("gfsh>")<10){
+				Thread.sleep(1000);
+				result = fos.toString();
+			}
+			fos.reset();
+			result = result.replaceAll("[^\\x00-\\x7F]", "");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public String SendCommand(String command){
 		String result = "";
 		try {
@@ -81,7 +99,9 @@ public class GGGsh {
 	Session session = null;
 	ByteArrayOutputStream fos = null;
 
-	public GGGsh(String user, String host, String pswd, String port, String gfsh_path, String locatorIP, String locatorPort, String c1, String c2, String c3, String c4){
+	public GGGsh(String user, String host, String pswd, String port, String gfsh_path, String locatorIP, String locatorPort, String c1, String c2, String c3, String c4, String nameOfConnection){
+		this.nameOfConnection = nameOfConnection + " - locator=" + locatorIP + "[" + locatorPort + "]";
+		
 		Loader l = new Loader("Connecting...");
 		JSch jsch=new JSch();
 		
@@ -109,6 +129,7 @@ public class GGGsh {
 			Thread.sleep(7000);
 			connected = true;
 		} catch(Exception e) {
+			l.end();
 			JOptionPane.showMessageDialog(null, "Error connecting to host");
 			e.printStackTrace();
 			return;
@@ -124,14 +145,14 @@ public class GGGsh {
 		
 		//run GFSH
 		SendCommand("cd "+gfsh_path);
-		SendCommand("gfsh");
-		SendCommand("connect --locator="+locatorIP+"["+locatorPort+"]");
+		SendCommandAndWaitForGFSH("gfsh");
+		SendCommandAndWaitForGFSH("connect --locator="+locatorIP+"["+locatorPort+"]");
 		
 		//add check for gfsh
 		
 		//get prefill command options for members
 		Command c = new Command();
-		DefaultTableModel dtm = c.getTableData(SendCommandAndWaitForGFSH("list members"));
+		DefaultTableModel dtm = c.getTableData(SendCommandAndWaitForGFSH_noLog("list members"));
 		while(dtm.getRowCount()==0){
 			try {Thread.sleep(100);} catch (Exception e){e.printStackTrace();}
 			dtm = c.getTableData(fos.toString());
@@ -145,7 +166,7 @@ public class GGGsh {
 		//get prefill command options for regions
 		c = new Command();
 		dtm = new DefaultTableModel();
-		dtm = c.getTableData(SendCommandAndWaitForGFSH("list regions"));
+		dtm = c.getTableData(SendCommandAndWaitForGFSH_noLog("list regions"));
 		while(dtm.getRowCount()==0){
 			try {Thread.sleep(100);} catch (Exception e){e.printStackTrace();}
 			dtm = c.getTableData(fos.toString());
@@ -159,7 +180,7 @@ public class GGGsh {
 		//list disk stores
 		c = new Command();
 		dtm = new DefaultTableModel();
-		dtm = c.getTableData(SendCommandAndWaitForGFSH("list disk-stores"));
+		dtm = c.getTableData(SendCommandAndWaitForGFSH_noLog("list disk-stores"));
 		while(dtm.getRowCount()==0){
 			try {Thread.sleep(100);} catch (Exception e){e.printStackTrace();}
 			dtm = c.getTableData(fos.toString());
@@ -173,7 +194,7 @@ public class GGGsh {
 		//list functions
 		c = new Command();
 		dtm = new DefaultTableModel();
-		dtm = c.getTableData(SendCommandAndWaitForGFSH("list functions"));
+		dtm = c.getTableData(SendCommandAndWaitForGFSH_noLog("list functions"));
 		while(dtm.getRowCount()==0){
 			try {Thread.sleep(100);} catch (Exception e){e.printStackTrace();}
 			dtm = c.getTableData(fos.toString());
@@ -187,7 +208,7 @@ public class GGGsh {
 		//list indexes
 		c = new Command();
 		dtm = new DefaultTableModel();
-		dtm = c.getTableData(SendCommandAndWaitForGFSH("list indexes"));
+		dtm = c.getTableData(SendCommandAndWaitForGFSH_noLog("list indexes"));
 		while(dtm.getRowCount()==0){
 			try {Thread.sleep(100);} catch (Exception e){e.printStackTrace();}
 			dtm = c.getTableData(fos.toString());

@@ -19,6 +19,7 @@ public class Command extends JFrame implements ActionListener {
 	
 	String name;
 	String description;
+	String fullcommand;
 	Parameter[] parameters;
 	GGGsh Gsh;
 	
@@ -111,6 +112,10 @@ public class Command extends JFrame implements ActionListener {
 				
 				if(p.options==null){
 					JTextField jtf = new JTextField();
+					//add sample query for query command
+					if(p.name.equals("query")){
+						jtf.setText("SELECT DISTINCT entry.value from /REGION.entrySet entry where entry.key.ATTRIBUTE = VALUE");
+					}
 					jtfs.add(jtf);
 					jp.add(jtf);
 				} else {
@@ -145,8 +150,11 @@ public class Command extends JFrame implements ActionListener {
 			if(height>10){
 				height = 10;
 			}
-		
-			setSize(600,60*(height+2));
+			if(name.equals("query")){
+				setSize(1040,60*(height+2));
+			} else {
+				setSize(600,60*(height+2));
+			}
 			setLocation(200,200);
 			setTitle(name);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -162,7 +170,7 @@ public class Command extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(java.awt.event.ActionEvent ae){
-		String command = name + " ";
+		fullcommand = name + " ";
 		int i=0;
 		int j=0;
 		if(parameters!=null){
@@ -171,25 +179,25 @@ public class Command extends JFrame implements ActionListener {
 					String userText = jtfs.get(i).getText();
 					i++;
 					if(userText.length()>0){
-						command += "--" + p.name + "='" + userText + "' ";
+						fullcommand += "--" + p.name + "='" + userText + "' ";
 					} else if(p.required==true){
 						JOptionPane.showMessageDialog(null, "Error: Required parameter \'"+p.name+"\' is empty");
 						return;
 					}
 				} else {
 					if(!jcbs.get(j).getSelectedItem().toString().equals("")){
-						command += "--" + p.name + "='" + jcbs.get(j).getSelectedItem().toString() + "' ";
+						fullcommand += "--" + p.name + "='" + jcbs.get(j).getSelectedItem().toString() + "' ";
 					}
 					j++;
 				}
 			}
 		}
-		String result = Gsh.SendCommand(command);
+		String result = Gsh.SendCommand(fullcommand);
 		setVisible(false);
 		if(result.split("\n").length<=4){
 			JOptionPane.showMessageDialog(null, result);
 		} else {
-			new TableResultWindow(name, getTableData(result));
+			new TableResultWindow(fullcommand, getTableData(result));
 		}
 		dispose();
 	}

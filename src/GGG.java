@@ -49,7 +49,7 @@ public class GGG extends JFrame implements ActionListener {
 			{"Queues", "create async-event-queue", "show Suscription-Queue-Size", "list async-event-queues"},
 			{"Regions", "alter region", "create region", "describe region", "destroy region", "list regions"},
 			{"Servers", "start locator", "start server", "status locator", "status server", "stop locator", "stop server", "describe member", "list members"},
-			{"Other", "run", "sh", "sleep", "start jconsole", "start jvisualvm", "start pulse", "start vsd", "connect", "disconnect", "describe connection", "exit", "help", "hint", "history", "version"},
+			{"Other", "run", "sh", "sleep", "start jconsole", "start jvisualvm", "start pulse", "start vsd", "connect", "disconnect", "describe connection", "exit", "help", "hint", "history", "version", "About..."},
 		};
 		JMenuBar jmb = new JMenuBar();
 		JMenu[] jmTM = new JMenu[menu.length];
@@ -95,7 +95,7 @@ public class GGG extends JFrame implements ActionListener {
 		//Show window
 		setSize(800,600);
 		setLocation(100,100);
-		setTitle("GGG - GemFire / Geode GUI");
+		setTitle("GGG - "+Gsh.nameOfConnection);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
@@ -105,25 +105,28 @@ public class GGG extends JFrame implements ActionListener {
 			Gsh.SendCommand(ae.getActionCommand().replace("gfsh>", ""));
 			jta.setText("gfsh>");
 			return;
-		}
-		String con = ae.getActionCommand().replace("-","");
-		String cl = "";
-		for(String s: con.split(" ")){
-			cl += s.substring(0, 1).toUpperCase() + s.substring(1);
-		}
-		try {
-			Class c = Class.forName(cl);
-			java.lang.reflect.Constructor constructor = c.getConstructor(new Class[]{});
-			Command com = (Command)constructor.newInstance(new Object[]{});
-			com.setup(Gsh);
-			if(com.name==null){
-				JOptionPane.showMessageDialog(null, "Command \'"+con+"\' is not supported yet");
-			} else {
-				com.showWindow();
+		} else if(ae.getActionCommand().equals("About...")){
+			JOptionPane.showMessageDialog(null, "GGGUI was created by Luis Olea in Mexico.\n\nCheck https://github.com/ldom22/GGGUI for updates.\n\nFor issues and feature requests please use the Github issue tracker.");
+		} else {
+			String con = ae.getActionCommand().replace("-","");
+			String cl = "";
+			for(String s: con.split(" ")){
+				cl += s.substring(0, 1).toUpperCase() + s.substring(1);
 			}
-		} catch(Exception e){
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Command \'"+con+"\' is not supported yet");
+			try {
+				Class c = Class.forName(cl);
+				java.lang.reflect.Constructor constructor = c.getConstructor(new Class[]{});
+				Command com = (Command)constructor.newInstance(new Object[]{});
+				com.setup(Gsh);
+				if(com.name==null){
+					JOptionPane.showMessageDialog(null, "Command \'"+con+"\' is not supported yet");
+				} else {
+					com.showWindow();
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Command \'"+con+"\' is not supported yet");
+			}
 		}
 	}
 	
