@@ -17,6 +17,7 @@ public class TableResultWindow extends JFrame {
 	public TableResultWindow(String title, DefaultTableModel dtm) {
 		JTable jt = new JTable(dtm);
 		jt.setCellSelectionEnabled(true);
+		jt.setAutoCreateRowSorter(true);
 		JScrollPane jsp = new JScrollPane(jt);
 		add(jsp);
 		

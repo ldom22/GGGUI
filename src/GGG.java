@@ -15,6 +15,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.event.*;
+import java.awt.datatransfer.StringSelection;
 
 public class GGG extends JFrame implements ActionListener {
 	
@@ -79,15 +80,18 @@ public class GGG extends JFrame implements ActionListener {
 		panel.setLayout(new GridLayout(1,1));
 			jtp = new JTextPane();
 				JPopupMenu popup = new JPopupMenu();
-				JMenuItem ct1 = new JMenuItem("Save to file");
-				JMenuItem ct2 = new JMenuItem("Clear terminal");
-				JMenuItem ct3 = new JMenuItem("About...");
+				JMenuItem ct1 = new JMenuItem("Copy");
+				JMenuItem ct2 = new JMenuItem("Save to file");
+				JMenuItem ct3 = new JMenuItem("Clear terminal");
+				JMenuItem ct4 = new JMenuItem("About...");
 				ct1.addActionListener(this);
 				ct2.addActionListener(this);
 				ct3.addActionListener(this);
+				ct4.addActionListener(this);
 				popup.add(ct1);
 				popup.add(ct2);
 				popup.add(ct3);
+				popup.add(ct4);
 			jtp.setComponentPopupMenu(popup);
 			jtp.setBackground(Color.BLACK);
 			jtp.setForeground(Color.WHITE);
@@ -121,6 +125,8 @@ public class GGG extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "GGGUI was created by Luis Olea in Mexico.\n\nCheck https://github.com/ldom22/GGGUI for updates.\n\nFor issues and feature requests please use the Github issue tracker.");
 		} else if(ae.getActionCommand().equals("Clear terminal")){
 			jtp.setText("");
+		} else if(ae.getActionCommand().equals("Copy")){
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(jtp.getSelectedText()),null);
 		} else if(ae.getActionCommand().equals("Save to file")){
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.showSaveDialog(this);
