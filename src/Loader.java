@@ -15,29 +15,10 @@ import javax.swing.*;
 
 public class Loader {
 	
-	LoaderThread lt;
-	
-	public Loader(String title){
-		lt = new LoaderThread(title);
-		lt.start();
-	}
-	
-	public void end(){
-		lt.hide();
-		lt.stop();
-	}
-}
-
-class LoaderThread extends Thread {
-	
 	String title;
 	JFrame jf;
 	
-	public LoaderThread(String title){
-		this.title = title;
-	}
-	
-	public void run(){
+	public Loader(String title){
 		JProgressBar progressBar = new JProgressBar(0,100);
 		progressBar.setValue(0);
 		progressBar.setIndeterminate(true);
@@ -53,8 +34,17 @@ class LoaderThread extends Thread {
 		jf.setVisible(true);
 	}
 	
-	public void hide(){
+	public void end(){
 		jf.setVisible(false);
 		jf.dispose();
+	}
+	
+	public void focus(){
+		jf.toFront();
+		jf.requestFocus();
+	}
+	
+	public static void main(String args[]){
+		new Loader("Connecting...");
 	}
 }

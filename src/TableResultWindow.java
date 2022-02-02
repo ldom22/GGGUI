@@ -16,13 +16,19 @@ public class TableResultWindow extends JFrame {
 	
 	public TableResultWindow(String title, DefaultTableModel dtm) {
 		JTable jt = new JTable(dtm);
+		jt.setCellSelectionEnabled(true);
 		JScrollPane jsp = new JScrollPane(jt);
 		add(jsp);
 		
-		setSize(800,600);
+		pack();
+		
+		int height = 66 + (16 * dtm.getRowCount());
+		if(height > 800){
+			height=900;
+		}
+		setSize((int)getSize().getWidth(),height);
 		setLocation(100,100);
 		setTitle(title);
-		pack();
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}

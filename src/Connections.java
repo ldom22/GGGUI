@@ -182,7 +182,8 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 	
 	public void actionPerformed(java.awt.event.ActionEvent ae){
 		if(ae.getActionCommand().equals("Connect")){
-			new GGGsh(jtf_array[1].getText(), jtf_array[2].getText(), jtf_array[3].getText(), jtf_array[4].getText(), jtf_array[5].getText(), jtf_array[6].getText(), jtf_array[7].getText(), jtf_array[8].getText(), jtf_array[9].getText(), jtf_array[10].getText(), jtf_array[11].getText(), jtf_array[0].getText());
+			Loader l = new Loader("Connecting...");
+			new GGGsh(jtf_array[1].getText(), jtf_array[2].getText(), jtf_array[3].getText(), jtf_array[4].getText(), jtf_array[5].getText(), jtf_array[6].getText(), jtf_array[7].getText(), jtf_array[8].getText(), jtf_array[9].getText(), jtf_array[10].getText(), jtf_array[11].getText(), jtf_array[0].getText(), l).start();
 		} else if(ae.getActionCommand().equals("Save")){
 			dlm.addElement(jtf_array[0].getText());
 			jl.setModel(dlm);

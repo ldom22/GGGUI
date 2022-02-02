@@ -14,13 +14,26 @@ import javax.swing.table.*;
 import com.jcraft.jsch.*;
 import java.io.*;
 
-public class GGGsh {
+public class GGGsh extends Thread {
 	
 	boolean connected = false;
 	GGG ggg;
 	
 	String[] prefill_member, prefill_region, prefill_diskstore, prefill_function, prefill_index;
 	String nameOfConnection;
+	
+	String user;
+	String host;
+	String pswd;
+	String port;
+	String gfsh_path;
+	String locatorIP;
+	String locatorPort;
+	String c1;
+	String c2;
+	String c3;
+	String c4;
+	Loader l;
 	
 	public void close(){
 		try {
@@ -99,10 +112,23 @@ public class GGGsh {
 	Session session = null;
 	ByteArrayOutputStream fos = null;
 
-	public GGGsh(String user, String host, String pswd, String port, String gfsh_path, String locatorIP, String locatorPort, String c1, String c2, String c3, String c4, String nameOfConnection){
+	public GGGsh(String user, String host, String pswd, String port, String gfsh_path, String locatorIP, String locatorPort, String c1, String c2, String c3, String c4, String nameOfConnection, Loader l){
+		this.user = user;
+		this.host = host;
+		this.pswd = pswd; 
+		this.port = port;
+		this.gfsh_path = gfsh_path;
+		this.locatorIP = locatorIP;
+		this.locatorPort = locatorPort;
+		this.c1 = c1;
+		this.c2 = c2;
+		this.c3 = c3;
+		this.c4 = c4;
 		this.nameOfConnection = nameOfConnection + " - locator=" + locatorIP + "[" + locatorPort + "]";
-		
-		Loader l = new Loader("Connecting...");
+		this.l = l;
+	}
+	
+	public void run(){
 		JSch jsch=new JSch();
 		
 		try {
@@ -136,6 +162,7 @@ public class GGGsh {
 		}
 		
 		ggg = new GGG(this);
+		l.focus();
 		
 		//custom commands after login
 		if(c1!=null && !c1.equals("") && !c1.equals(" ")){SendCommand(c1);}
