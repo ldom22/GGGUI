@@ -173,6 +173,7 @@ public class GGGsh extends Thread {
 		//run GFSH
 		SendCommand("cd "+gfsh_path);
 		SendCommandAndWaitForGFSH("gfsh");
+		SendCommandAndWaitForGFSH("set variable --name=APP_RESULT_VIEWER --value=x");
 		SendCommandAndWaitForGFSH("connect --locator="+locatorIP+"["+locatorPort+"]");
 		
 		//add check for gfsh
