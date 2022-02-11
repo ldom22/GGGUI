@@ -54,7 +54,19 @@ public class Command extends JFrame implements ActionListener {
 					p.description = p.description+" (required):";
 				}
 				if(p.description.length()>100){
-					//TODO handle length p.description = "<html>"+p.description+"</html>";
+					String result = "<html>";
+					String[] arr = p.description.split(" ");
+					String line = "";
+					for(String w: arr){
+						result += w+" ";
+						line += w+" ";
+						if(line.length()>100){
+							line = "";
+							result += "<br>";
+						}
+					}
+					result += "</html>";
+					p.description = result;
 				}
 				main.add(new JLabel(p.description));
 				
@@ -117,10 +129,6 @@ public class Command extends JFrame implements ActionListener {
 				
 				if(p.options==null){
 					JTextField jtf = new JTextField();
-					//add sample query for query command
-					if(p.name.equals("query")){
-						jtf.setText("SELECT DISTINCT entry.value from /REGION.entrySet entry where entry.key.ATTRIBUTE = VALUE");
-					}
 					jtfs.add(jtf);
 					jp.add(jtf);
 				} else {
@@ -169,7 +177,10 @@ public class Command extends JFrame implements ActionListener {
 			if(result.split("\n").length<=4){
 				JOptionPane.showMessageDialog(null, result);
 			} else {
-				new TableResultWindow(Gsh.nameOfConnection.split(" ")[0] + " " + name, getTableData(result));
+				DefaultTableModel dtm = getTableData(result);
+				if(dtm.getRowCount()>0){
+					new TableResultWindow(Gsh.nameOfConnection.split(" ")[0] + " " + name, dtm);
+				}
 			}
 		}
 	}
@@ -202,7 +213,10 @@ public class Command extends JFrame implements ActionListener {
 		if(result.split("\n").length<=4){
 			JOptionPane.showMessageDialog(null, result);
 		} else {
-			new TableResultWindow(Gsh.nameOfConnection.split(" ")[0] + " " + fullcommand, getTableData(result));
+			DefaultTableModel dtm = getTableData(result);
+			if(dtm.getRowCount()>0){
+				new TableResultWindow(Gsh.nameOfConnection.split(" ")[0] + " " + name, dtm);
+			}
 		}
 		dispose();
 	}

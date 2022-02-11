@@ -52,6 +52,29 @@ public class GGGsh extends Thread {
 		}
 	}
 	
+	public String SendCommandAndWaitForGFSH_withTimeout(String command){
+		int n=0;
+		String result = "";
+		try {
+			bw.write(command + "\n");
+			bw.flush();
+			while(result.lastIndexOf("gfsh>")<10 && n<5){
+				n++;
+				Thread.sleep(1000);
+				result = fos.toString();
+			}
+			if(n==5){
+				return "NO_GFSH";
+			}
+			fos.reset();
+			result = result.replaceAll("[^\\x00-\\x7F]", "");
+			ggg.log(result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public String SendCommandAndWaitForGFSH(String command){
 		String result = "";
 		try {
@@ -172,11 +195,22 @@ public class GGGsh extends Thread {
 		
 		//run GFSH
 		SendCommand("cd "+gfsh_path);
-		SendCommandAndWaitForGFSH("gfsh");
-		SendCommandAndWaitForGFSH("set variable --name=APP_RESULT_VIEWER --value=x");
-		SendCommandAndWaitForGFSH("connect --locator="+locatorIP+"["+locatorPort+"]");
+		String res = SendCommandAndWaitForGFSH_withTimeout("gfsh");
+		if(res.equals("NO_GFSH")){
+			ggg.dispose();
+			l.end();
+			JOptionPane.showMessageDialog(null, "Error running GFSH");
+			return;
+		}
 		
-		//add check for gfsh
+		SendCommandAndWaitForGFSH("set variable --name=APP_RESULT_VIEWER --value=x");
+		res = SendCommandAndWaitForGFSH("connect --locator="+locatorIP+"["+locatorPort+"]");
+		if(res.contains("Could not connect to ")){
+			ggg.dispose();
+			l.end();
+			JOptionPane.showMessageDialog(null, "Error connecting to locator");
+			return;
+		}
 		
 		//get prefill command options for members
 		Command c = new Command();

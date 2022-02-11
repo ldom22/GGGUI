@@ -11,6 +11,8 @@
 
 import javax.swing.*;
 import javax.swing.table.*;
+import java.awt.*;
+import java.awt.Color;
 
 public class TableResultWindow extends JFrame {
 	
@@ -18,6 +20,10 @@ public class TableResultWindow extends JFrame {
 		JTable jt = new JTable(dtm);
 		jt.setCellSelectionEnabled(true);
 		jt.setAutoCreateRowSorter(true);
+		jt.setDefaultEditor(Object.class, null);
+		jt.getTableHeader().setOpaque(false);
+		jt.getTableHeader().setBackground(Color.lightGray);
+		jt.setFont(new Font("monospaced", Font.PLAIN, 12));
 		JScrollPane jsp = new JScrollPane(jt);
 		add(jsp);
 		

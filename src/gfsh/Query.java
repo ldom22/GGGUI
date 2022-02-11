@@ -11,6 +11,8 @@
 
 public class Query extends Command {
 	
+	String lastquery;
+	
 	public Query() {
 		name = "query";
 		description = "Run the specified OQL query as a single quoted string and display the results";
@@ -37,7 +39,17 @@ public class Query extends Command {
 		parameters[2].options[0] = "false";
 		parameters[2].options[1] = "true";
 
-
+	}
+	
+	//add sample query for query command
+	@Override
+	public void setup(GGGsh Gsh){
+		super.setup(Gsh);
+		if(lastquery==null){
+			super.jtfs.get(0).setText("SELECT DISTINCT entry.key from /"+Gsh.prefill_region[0]+".entrySet entry where entry.key.ATTRIBUTE = VALUE");
+		} else {
+			super.jtfs.get(0).setText(lastquery);
+		}
 	}
 	
 }
