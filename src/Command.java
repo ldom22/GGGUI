@@ -14,14 +14,16 @@ import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
+import javax.swing.event.*;
 
-public class Command extends JFrame implements ActionListener {
+public class Command extends JFrame implements ActionListener, DocumentListener, ItemListener {
 	
 	String name;
 	String description;
 	String fullcommand;
 	Parameter[] parameters;
 	GGGsh Gsh;
+	JButton jb_run;
 	
 	ArrayList<JTextField> jtfs;
 	ArrayList<JComboBox> jcbs;
@@ -129,6 +131,7 @@ public class Command extends JFrame implements ActionListener {
 				
 				if(p.options==null){
 					JTextField jtf = new JTextField();
+					jtf.getDocument().addDocumentListener(this);
 					jtfs.add(jtf);
 					jp.add(jtf);
 				} else {
@@ -139,13 +142,14 @@ public class Command extends JFrame implements ActionListener {
 					for(String s: p.options){
 						jcb.addItem(s);
 					}
+					jcb.addItemListener(this);
 					jcbs.add(jcb);
 					jp.add(jcb);
 				}
 				main.add(jp);
 			}
 		}
-		JButton jb_run = new JButton("Run command");
+		jb_run = new JButton("Run '"+generateCommand()+"'");
 		jb_run.addActionListener(this);
 		main.add(jb_run);
 		if(height<10){
@@ -185,8 +189,31 @@ public class Command extends JFrame implements ActionListener {
 		}
 	}
 	
+	public String generateCommand(){
+		String fullcommand = name + " ";
+		int i=0;
+		int j=0;
+		if(parameters!=null){
+			for(Parameter p: parameters){
+				if(p.options==null){ 
+					String userText = jtfs.get(i).getText();
+					i++;
+					if(userText.length()>0){
+						fullcommand += "--" + p.name + "='" + userText + "' ";
+					}
+				} else {
+					if(!jcbs.get(j).getSelectedItem().toString().equals("")){
+						fullcommand += "--" + p.name + "='" + jcbs.get(j).getSelectedItem().toString() + "' ";
+					}
+					j++;
+				}
+			}
+		}
+		return fullcommand;
+	}
+	
 	public void actionPerformed(java.awt.event.ActionEvent ae){
-		fullcommand = name + " ";
+		String fullcommand = name + " ";
 		int i=0;
 		int j=0;
 		if(parameters!=null){
@@ -219,6 +246,27 @@ public class Command extends JFrame implements ActionListener {
 			}
 		}
 		dispose();
+	}
+	
+	public void changedUpdate(DocumentEvent e){
+		jb_run.setText("Run '"+generateCommand()+"'");
+		jb_run.revalidate();
+		jb_run.repaint();
+	}
+	public void removeUpdate(DocumentEvent e){
+		jb_run.setText("Run '"+generateCommand()+"'");
+		jb_run.revalidate();
+		jb_run.repaint();
+	}
+	public void insertUpdate(DocumentEvent e){
+		jb_run.setText("Run '"+generateCommand()+"'");
+		jb_run.revalidate();
+		jb_run.repaint();
+	}
+	public void itemStateChanged(ItemEvent e){
+		jb_run.setText("Run '"+generateCommand()+"'");
+		jb_run.revalidate();
+		jb_run.repaint();
 	}
 	
 	public DefaultTableModel getTableData(String s){
