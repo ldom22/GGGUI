@@ -150,6 +150,11 @@ public class Command extends JFrame implements ActionListener, DocumentListener,
 			}
 		}
 		jb_run = new JButton("Run '"+generateCommand()+"'");
+		if(name.contains("close") || name.contains("import") || name.contains("remove") || name.contains("alter") || name.contains("destroy") || name.contains("pause") || name.contains("stop") || name.contains("clear") || name.contains("close")){
+			jb_run.setBackground(Color.RED);
+			jb_run.setForeground(Color.RED);
+			jb_run.setOpaque(true);
+		}
 		jb_run.addActionListener(this);
 		main.add(jb_run);
 		if(height<10){
