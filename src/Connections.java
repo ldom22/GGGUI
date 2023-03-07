@@ -163,9 +163,15 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 				jtf_array[7] = new JTextField();
 				jp7.add(jtf_array[7]);
 			settings.add(jp7);
-			JButton jb = new JButton("Connect");
-			jb.addActionListener(this);
-			settings.add(jb);
+			JPanel jp9 = new JPanel();
+				jp9.setLayout(new GridLayout(1,2));
+				JButton jb = new JButton("Connect");
+				jb.addActionListener(this);
+				JButton jb2 = new JButton("Offline mode");
+				jb2.addActionListener(this);
+				jp9.add(jb);
+				jp9.add(jb2);
+			settings.add(jp9);
 		add(settings);
 		
 		pack();
@@ -200,6 +206,8 @@ public class Connections extends JFrame implements ActionListener, ListSelection
 			for(JTextField jtf: jtf_array){
 				jtf.setText("");
 			}
+		} else if(ae.getActionCommand().equals("Offline mode")){
+			new GGG(null);
 		}
 	}
 	

@@ -111,14 +111,22 @@ public class GGG extends JFrame implements ActionListener {
 		//Show window
 		setSize(800,600);
 		setLocation(100,100);
-		setTitle("GGG - "+Gsh.nameOfConnection);
+		if(Gsh!=null) {
+			setTitle("GGG - "+Gsh.nameOfConnection);
+		} else {
+			setTitle("GGG - Offline mode");
+		}
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 	
 	public void actionPerformed(java.awt.event.ActionEvent ae){
 		if(ae.getActionCommand().startsWith("gfsh>")){
-			Gsh.SendCommand(ae.getActionCommand().replace("gfsh>", ""));
+			if(Gsh!=null){
+				Gsh.SendCommand(ae.getActionCommand().replace("gfsh>", ""));
+			} else {
+				log(ae.getActionCommand().replace("gfsh>", ""));
+			}
 			jta.setText("gfsh>");
 			return;
 		} else if(ae.getActionCommand().equals("About...")){
@@ -152,7 +160,14 @@ public class GGG extends JFrame implements ActionListener {
 				Class c = Class.forName(cl);
 				java.lang.reflect.Constructor constructor = c.getConstructor(new Class[]{});
 				Command com = (Command)constructor.newInstance(new Object[]{});
-				com.setup(Gsh);
+				
+				if(Gsh!=null){
+					com.setup(Gsh);
+				} else {
+					com.setup(null);
+					com.offlineMode(this);
+				}
+				
 				if(com.name==null){
 					JOptionPane.showMessageDialog(null, "Command \'"+con+"\' is not supported yet");
 				} else {
